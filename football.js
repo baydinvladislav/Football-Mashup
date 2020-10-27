@@ -6,7 +6,7 @@ const wikiUrl = 'https://en.wikipedia.org/api/rest_v1/page/summary/';
 const strikersList = document.querySelector('#strikers')
 const btn = document.querySelector('button');
 
-// Make an AJAX requests
+// Make AJAX requests to Football API and Wiki API
 function getJSON(url) {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
@@ -19,7 +19,7 @@ function getJSON(url) {
         reject( Error(xhr.statusText) );
       }
     };
-    if (url == urlAPI) { // API football requires setted request header
+    if (url == urlAPI) { // API football requires setted request header but Wiki gave error, use statement condition
     xhr.setRequestHeader('x-rapidapi-host', source);
     xhr.setRequestHeader('x-rapidapi-key', key);
     }
@@ -28,7 +28,7 @@ function getJSON(url) {
   });
 }
 
-// Generate HTML
+// Create HTML elements for our strikers
 function generateHTML(data) {
   const section = document.createElement('section')
   strikersList.appendChild(section);
@@ -40,12 +40,12 @@ function generateHTML(data) {
   `;
 }
 
-// Receive information from Wiki
+// Receive biography information from Wiki
 function getProfiles(json) {
     return getJSON(wikiUrl + json.api.topscorers[0].firstname + ' ' + json.api.topscorers[0].lastname);
 }
 
-
+// Launch our app using button on the page
 btn.addEventListener('click', (event) => {
   event.target.textContent = 'Loading...'
 
