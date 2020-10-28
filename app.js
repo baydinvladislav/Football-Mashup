@@ -16,8 +16,6 @@ let championats = {
 };
 
 
-
-
 // Make an AJAX request for receive logos
 function getLogos(url, callback) {
   const xhr = new XMLHttpRequest();
