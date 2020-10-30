@@ -44,6 +44,7 @@ function generateLogos (picture) {
       while (strikersList.firstChild) {
         strikersList.removeChild(strikersList.firstChild);
       }
+      // Start to show striker picked league
       getJSON(`https://api-football-v1.p.rapidapi.com/v2/topscorers/${String(championats[id])}`)
         .then(getProfiles)
         .then(generateHTML)
